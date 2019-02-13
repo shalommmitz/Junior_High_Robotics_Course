@@ -12,7 +12,7 @@ During the course, the students build a robot, which is affordable enough so the
 ## Table of contents
 
 - [Course Overview](#course-overview)
-- [Subdirectories](#subdirectories)
+- [Content of Subdirectories](#content-of-subdirectories)
 - [Prerequisites and Installing](#prerequisites-and-installing)
 - [Author](#author)
 - [License](#license)
