@@ -6,7 +6,7 @@
   </p>
 </p>
 <br>
-This repository holds the materils of a robotics course that was given for more than 10 years to gifted students. The course teaches the basics of electronics, programming and robotics. The course aims to make students 'at home' with advanced, deep technologies, in hope that more of them will choose STEM as careers.
+This repository holds the materials of a robotics course that was given for more than 10 years to gifted students. The course teaches the basics of electronics, programming and robotics. The course aims to make students 'at home' with advanced, deep technologies, in hope that more of them will choose STEM as careers.
 During the course, the students build a robot, which is affordable enough so they can take it home at the end of the year. This is a great motivator.
 
 ## Table of contents
@@ -19,14 +19,14 @@ During the course, the students build a robot, which is affordable enough so the
 
 ## Course Overview
 
-The course was givven multiple years to 7th, 8th and 9th graders at the i[Ofek Gifted school](http://projects.jerusalemfoundation.org/education/education/ofek-school-for-gifted-children.aspx), located at Jerusalem, Israel.
+The course was given multiple years to 7Th, 8Th and 9Th graders at the i[Ofek Gifted school](http://projects.jerusalemfoundation.org/education/education/ofek-school-for-gifted-children.aspx), located at Jerusalem, Israel.
 This course teaches the following
 
 - The basic principles of electricity (Ohm's law and related terms)
 - The basic principles of electronics, including use of multi-meter
 - Reading electronics schematics
 - Design of PCBs
-- Soldering and trouble-shooting electronic circuites
+- Soldering and trouble-shooting electronic circuits
 - Basic Python skills
 
 
