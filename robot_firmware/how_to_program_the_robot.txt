@@ -1,5 +1,6 @@
 Shalom Mitz			25TH March 2017
 
+OVERVIEW
 
 The procedure below shows how to program the robot 'brain'. The brain is the 'WEMOS D1 Mini' part.
 Normally, the D1 can be programmed while the display-module is attached.

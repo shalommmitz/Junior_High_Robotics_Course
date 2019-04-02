@@ -1,23 +1,24 @@
 #!/usr/bin/env python
-import Image, sys, os
+import  sys, os
+from PIL import Image
 
 argv = sys.argv
 if len(argv)!=2:
-    print "Usage: "+ argv[0] +" <48x64 blackwhite bmp filename>"
+    print("Usage: "+ argv[0] +" <48x64 blackwhite bmp filename>")
     exit()
 fn = argv[1]
 if not os.path.isfile(fn):
-    print "The file '"+ fn +"' does not exit - Aborting."
+    print("The file '"+ fn +"' does not exit - Aborting.")
     exit()
 if len(fn)<4:
-    print "The filename should end with '.bmp' - Aborting."
+    print("The filename should end with '.bmp' - Aborting.")
     exit()
 if fn[-4:].lower()!=".bmp":
-    print "The filename should end with '.bmp' - Aborting."
+    print("The filename should end with '.bmp' - Aborting.")
     exit()
 
 outFN = fn[:-4] +".hexImage"
-print "Writing output to '"+ outFN +"'."
+print("Writing output to '"+ outFN +"'.")
 im = Image.open(fn)
 x = 0
 y = 0
@@ -39,4 +40,4 @@ for y in range(0,height):
 
         f.write(hex(c)[2:])
     f.write("\n")
-    print line
+    print(line)
