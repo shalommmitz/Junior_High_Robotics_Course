@@ -33,13 +33,16 @@ You can edit the image with any image editing tool, such as mspaint, gimp, paint
    The .hexImage file can be used by the robot software.
    
    Run:
-   python convert_bmp_to_hex_Image.py <file_name.bmp>
+   
+        python convert_bmp_to_hex_Image.py <file_name.bmp>
+        
    This will create a .hexImage file
 
 ## Preview the .hexImage file:
 
    run: 
-   python show_hexImage_on_pc.py <file_name.hexImage>.
+   
+        python show_hexImage_on_pc.py <file_name.hexImage>.
 
    If you don't like what you see, you can edit/save/convert/preview until happy :-)
 
@@ -55,12 +58,14 @@ You can edit the image with any image editing tool, such as mspaint, gimp, paint
 
 Connect to the robot and get the REPL prompt.  
 Connecting to the robot can be done:
+
 - Using WEBREPL over WiFi
 Or 
 - Using any 'serial terminal' program, such as putty or minicom over USB
 
 Use 'display_hexImage.py', which is present on your robot, to display the file.
    For example:
-   >>> import display_hexImage as d
-   >>> d.display("abc.hexImage")
+   
+       >>> import display_hexImage as d
+       >>> d.display("abc.hexImage")
 	   
