@@ -42,7 +42,9 @@ The assembled robot chassis.
 Note: the battery-holder wires should be routed to the top, and not as shown.
 
 ## Build the Electronics:
-###Solder the robot 'brain' and the associated display:
+
+### Solder the robot 'brain' and the associated display:
+
 It is critical that all those parts are soldered exactly perpendicular.
     - the female 'socket' that connect the brain to the PCB
     - the male/female socket that is soldered to the brain
@@ -50,10 +52,12 @@ It is critical that all those parts are soldered exactly perpendicular.
 
 The "brain" is the Wemos D1 Mini.
 
-###Build the electronic board
+### Build the electronic board
+
 Here you need to solder the parts detailed at "Robot_hardware" to the supplied PCB.
 
-###The integrated circuits used:
+### The integrated circuits used:
+
 - U1 is "Hex inverters" SN74LS04.
 - U2 is "Bridge Power Driver" L239D
  
