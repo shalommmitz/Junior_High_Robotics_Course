@@ -49,6 +49,10 @@ You can edit the image with any image editing tool, such as mspaint, gimp, paint
 ## Upload the .hexImage file to the robot:
 
    Loading the file might be done using ampy or webrepl
+
+   Using ampy:   
+   
+       ampy -p /dev/ttyUSB0 put <file name>
    
    Details on ampy: https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy
    
@@ -67,5 +71,5 @@ Use 'display_hexImage.py', which is present on your robot, to display the file.
    For example:
    
        >>> import display_hexImage as d
-       >>> d.display("abc.hexImage")
+       >>> d.display_image("abc.hexImage")
 	   
