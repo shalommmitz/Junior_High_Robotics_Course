@@ -1,33 +1,20 @@
 #Building the Robot</h3>
 
-    Step by Step instructions for building the robot.
-
-
-
-## Table of contents
-
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
-- [Build the chassis](#build-the-chassis)
-- [Build the Electronics](#build-the-electronics)
-- [Program the robot brain](#program-the-robot-brain)
-- [Connect everything together](#connect-everything-together)
-- [Test](#test)
+Step by Step instructions for building the robot.
 
 ## Overview
 
-Here is an overview of the steps:
+- [Get the Hardware](#get-the-hardware)
+- [Build the chassis](#build-the-chassis)
+- [Build the Electronics](#build-the-electronics)
+- [Setup a PC](#setup-a-pc)
+- [Program the robot brain](#program-the-robot-brain)
+- [Connect everything together](#connect-everything-together)
+- [Test](#test)
+- [Next steps](#next-steps)
 
-1. Make sure you have all the prerequisites (next section)
-2. Build the chassis. 
-  The chassis also includes the battery holder, the motors, the wheels and the power switch.
-3. Build the electronics
-4. Program the robot's brain
-5. Put everything together
-6. Test
-7. What's next
 
-## Prerequisites
+## Get the Hardware
 
 TBD
 
@@ -35,7 +22,8 @@ TBD
 ## Build the Chassis
 
    The chassis is the platform to which the rest of the parts are connected.
-   Build the chassis according to the attached instructions.
+   The attached parts are: the battery holder, the motors, the wheels and the power switch.
+   Build the chassis according to the instructions included in the chassis kit.
    When done, you should have the two motors and the battery holder attached to the chassis.
 <img src="pictures/robot_chassis.jpg" width="500">
 The assembled robot chassis.
@@ -68,6 +56,10 @@ Tip: Start with parts at the center of the PCB, which are not high (because high
 The assembled PCB.
 
 Note: The RF-receiver at the very bottom is optional.
+
+## Setup a PC
+
+TBD
 
 ## Program the robot brain
 
