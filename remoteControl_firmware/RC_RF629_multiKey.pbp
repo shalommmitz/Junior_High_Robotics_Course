@@ -1,0 +1,178 @@
+'V1.0 18 Feb 2012  Shalom Mitz  blinks led once a 2nd (leg 6 & 7)
+'V2.0 28 May 2016  Shalom Mitz  Move to RF (Python sources at VM xub_dvbT)
+'V3.0 09 Apr 2018  Shalom Mitz  Move to new RF protocol RF 
+                           
+' Shalom symbol ROBOT_ID = $02  'no need to calculate parity    
+' Maoz symbol ROBOT_ID = $03  'no need to calculate parity    
+symbol ROBOT_ID = $02  'no need to calculate parity  
+SYMBOL RIGHT_DURATION = 120  
+SYMBOL LEFT_DURATION = 120  
+
+    'ANSEL = 0          ' disable A/D (needed only on the 12F675)
+                                                                                         '
+'========================Pin assigment Documentation========================
+' PIC12F629 pin assigment
+' Pin 1 = +V 
+' Pin 8 = GND
+'
+' Pin 7 (gp0) = Output to LED and RF xmitter
+' Pin 6 (gp1) =  Input: push-button to gnd
+' Pin 5 (gp2) =  Input: push-button to gnd
+' Pin 4 (gp3) =  reset - not used
+' Pin 3 (gp4) =  Input: push-button to gnd
+' Pin 2 (gp5) =  Input: push-button to gnd
+
+'========================Variable and Constants Decleration========================
+' IMPORTANT: configure programmer to used INTOCS, no brownOut
+Include "modedefs.bas"
+
+symbol CMD_MASK         = %00000111
+symbol LED_MASK         = %00001000
+symbol DIR_MASK         = %00110000
+symbol CMD_PARITY_MASK  = %01000000
+symbol FORWARD_VALUE    = %00110000  
+symbol BACK_VALUE       = %00000000
+symbol RIGHT_VALUE      = %00010000
+symbol LEFT_VALUE       = %00100000
+
+SYMBOL LED_RFTX = GPIO.0
+
+
+robotIdAsTransmitted var byte
+buttonPressedPinNumber var byte
+msg_0 var byte
+msg_1 var byte
+msg_2 var byte
+msg_3 var byte
+commandParity var byte
+
+bParam var byte
+bRet var byte
+i var byte
+
+numBitsOne var byte
+mask var byte
+
+'=========================Hardware and varibale initialization===================
+
+gosub init_hardware
+
+bParam = ROBOT_ID
+gosub getParity
+bRet = bRet * %10000000
+robotIdAsTransmitted = ROBOT_ID | bRet  
+
+'blink LED w/RobotID
+for i=1 to ROBOT_ID
+    high LED_RFTX      
+    pause 400
+    low LED_RFTX
+    pause 400
+next i
+input LED_RFTX
+'============================Main Loop=====================================
+' Place_in_msg Variable        Bits meaning  (7:MSB, 0:LSB)
+' FIRST        robotIdAsTrsmtd 7: parity, 6-4: zeros, 3-0: robot ID
+' SECONND      msg_0           7: parity, various bits
+' THIRD        msg_1           7: parity, 6-0: right wheel time(0.1Sec)
+' FORTH        msg_2           7: parity, 6-0: left wheel time(0.1Sec)
+' FIFTH        msg_3           "vertical parity"
+
+mainLoop:
+
+if commandParity=0 then
+    commandParity = 1
+else
+    commandParity = 0
+endif
+
+gosub waitForButton
+
+msg_0 = bParam
+gosub getParity
+bRet = bRet * %10000000
+msg_0 = msg_0 | bRet  
+
+msg_1 = $41   
+msg_2 = $41   
+
+' Fifth  byte: XOR of all prev bytes (created automaticaly)
+' msg_3
+msg_3 = robotIdAsTransmitted 
+msg_3 = msg_3 ^ msg_0
+msg_3 = msg_3 ^ msg_1
+msg_3 = msg_3 ^ msg_2
+
+
+for i=1 to 4
+    'SERout GPIO.0,T1200,[ $aa, $aa, $aa, $aa, robotIdAsTransmitted,msg_0,msg_1,msg_2,msg_3]
+    SERout GPIO.0,T1200,[ $aa, $aa, $aa, $aa, robotIdAsTransmitted,msg_0,msg_1,msg_2,msg_3]
+    pause i*10
+next
+input LED_RFTX
+
+pause 200
+goto mainLoop
+
+'=======================End of Main Loop=====================================
+
+' Returns the number of pin at buttonPressedPinNumber
+' Pin 6 (gp1) =  Input: push-button to gnd
+' Pin 5 (gp2) =  Input: push-button to gnd
+' Pin 3 (gp4) =  Input: push-button to gnd
+' Pin 2 (gp5) =  Input: push-button to gnd
+waitForButton:
+   bParam = 0
+   if GPIO.1 = 0 then 
+      bParam = bParam | $01
+   endif
+   if GPIO.2 = 0 then 
+      bParam = bParam | $02
+   endif
+   if GPIO.5 = 0 then 
+      bParam = bParam | $04
+   endif
+   if GPIO.4 = 0 then 
+      bParam = bParam | $08
+   endif
+   if bParam>0 then
+       return
+   endif
+goto waitForButton
+
+
+'============================misc utils=====================================
+getParity:
+    'input: bParam
+    'output: bRet
+    
+    numBitsOne  = 0
+    mask = 1
+    for i=1 to 8
+        if (mask & bParam) > 0 then
+            numBitsOne = numBitsOne+1
+        endif
+        mask = mask * 2
+    next i
+    bRet = numBitsOne mod 2
+    return
+
+init_hardware:
+    disable    ' disables interups and debug
+    CMCON = 7           ' Disable comparators
+    'ANSEL = 0          ' disable A/D (needed only on the 12F675)
+    OPTION_REG.7 = 0    ' enable  pullups  
+    TRISIO.1 = 1        ' pin 6 = GPIO.1 is input
+    TRISIO.2 = 1        ' pin 5 = GPIO.2 is input
+    TRISIO.4 = 1        ' pin 3 = GPIO.4 is input
+    TRISIO.5 = 1        ' pin 2 = GPIO.5 is input
+    WPU = %11111110     ' weak pull-ups on for all pins (where relevant) is on
+    asm                
+      bsf STATUS, RP0 ;Bank 1
+      call 3FFh ;Get the cal value
+      movwf OSCCAL ;Calibrate
+      bcf STATUS, RP0 ;Bank 0
+    endasm   
+    return
+
+'============================END OF SOWTWARE=====================================   
