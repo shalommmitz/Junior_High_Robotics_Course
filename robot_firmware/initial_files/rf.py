@@ -141,12 +141,15 @@ class RF(object):
         leftMotorDuration = int(msg[2] & 0b01111111)
 
         rightMotorDuration = int(msg[3] & 0b01111111)
+        remoteId = int(msg[0] & 0b00001111)
+        print("remoteId:"+ str(remoteId) )
 
         msgDict = { "command": command,"commandParity": commandParity,"ledState": ledState }
         msgDict["rightMotorDirction"] = rightMotorDirction
         msgDict["leftMotorDirction"] = leftMotorDirction
         msgDict["rightMotorDuration"] = rightMotorDuration
         msgDict["leftMotorDuration"] = leftMotorDuration
+        msgDict["remoteId"] = remoteId
         return msgDict
 
     def executePacket(self, msg):

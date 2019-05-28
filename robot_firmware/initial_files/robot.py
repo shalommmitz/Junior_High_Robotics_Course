@@ -78,9 +78,12 @@ LED.value(LED_OFF)
 if packet:
     while True:
         if packet: 
-            print( "Executing:"+ str(ubinascii.hexlify(packet)) )
+            print( "Got RF packet:"+ str(ubinascii.hexlify(packet)) )
             msgDict = r.interpetMsg( packet)
-            executePacket(msgDict)
+            if str(msgDict["remoteId"]) == str(ROBOT_ID):
+                executePacket(msgDict)
+            else:
+                print("Ignoring rf packet: wrong robot ID. Expected:"+ str(ROBOT_ID) +" Got from rf:"+ str(msgDict["remoteId"]) )_ 
         packet = r.getPacket()
 
 # Step 3.5: No valid packet received - will exit
