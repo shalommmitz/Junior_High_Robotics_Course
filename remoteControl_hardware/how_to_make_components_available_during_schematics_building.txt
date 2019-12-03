@@ -1,0 +1,11 @@
+1) Open the "Schematic captre" software from the "DipTrace launcher"
+2) From the top-menu, select "Library" and then "Library Setup"
+3) Now at the "Library Setup" window: 
+      At "Groups", choose "User Components"
+      Click "Add Library" and add "remoteControl_diptrace_components"  (At Ofek, this is at "W:\remote_control")
+      click "OK" to close the "Library Setup" window.
+4) At the upper/left corner of the main window, click on "Project Libraries" and choose "User components"
+    Just below, click on "remoteControl_components"
+    
+
+    
