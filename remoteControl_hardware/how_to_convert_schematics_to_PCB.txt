@@ -1,0 +1,12 @@
+1) Load your schematics into the schematics editing tool
+2) Do: "File" --> "Convert to PCB"
+3) Click "OK" and "OK" to accept defaults
+4) "View" --> "Units" --> "mm"
+    "Route" --> "Layer Setup": select "Top" and change "Layer Type" to "Plane"
+                --> "Route Setup" and set both "Trace width" and "Trace clearance" to 1
+5) "Objects" --> "Create Board points" 
+    Choose "Create rectangular board"
+6) Place components:
+
+7) Route
+

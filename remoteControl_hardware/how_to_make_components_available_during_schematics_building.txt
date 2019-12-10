@@ -1,4 +1,4 @@
-1) Open the "Schematic captre" software from the "DipTrace launcher"
+1) Open the "Schematic capture" software from the "DipTrace launcher"
 2) From the top-menu, select "Library" and then "Library Setup"
 3) Now at the "Library Setup" window: 
       At "Groups", choose "User Components"
