@@ -1,0 +1,89 @@
+from SimpleCV import *
+
+
+# create image object by reading file
+img = Image("old/donkey.jpg")
+
+#show image object and wait for user to press ENTER
+img.show()
+raw_input(">")
+
+#save image
+#img.save("fn")
+
+#clone the imgage
+clone = img.copy()
+
+#create smaller copy of the image
+thumb = img.scale(90,90)
+
+#cut part of the image
+cropped = img.crop(100, 100, 50, 50)
+
+#find corners
+corners = img.findCorners()
+
+#find blobs of color
+blobs = img.findBlobs()
+print blobs
+blobs.draw()
+img.show()
+raw_input(">")
+##blobs are returned in order of area, smallest first
+#print "largest green blob at " + str(green_blobs[-1].x) + ", " + str( green_blobs[-1].y)
+
+bigface = face.scale(3)
+
+rotated = lenna.rotate(90)
+
+#split image into channels and unite again
+(r,g,b)=img.splitChannels()
+#new = img.mergeChannels(None,b,g)
+new = img.mergeChannels(r,b,g)
+
+#convert image to grey
+img.toGray()
+
+matrix = grey.getNumpy()
+print matrix[0][0]
+
+yellow_car = car.colorDistance(Color.YELLOW)
+only_car = car - yellow_car
+only_car.meanColor()
+source.findTemplate(template,threshold=t,method=m)
+
+img1.sideBySide(img2).show() #show sidebyside
+
+img.dl().circle((10,10), 10, Color.RED) #draw circle
+
+#get blobs
+screensize = img.width * img.height
+min_blob_size = 0.10 * screensize # the minimum blob is at least 10% of screen
+max_blob_size = 0.80 * screensize # the maximum blob is at most 80% of screen
+blobs = img.findBlobs(minsize=min_blob_size, maxsize=max_blob_size) # get the largest blob on the screen
+
+#get width and height of image
+    width = img.width;  height = img.height
+
+#get distance from specified RGP color
+imgDiffFromBlue = img.colorDistance( (21, 28, 63) )   #R, G, B
+
+#Find edges of image
+img = img.edges()
+
+# find lines in image
+lines = img.findLines()
+#find longest line
+longest_line = lines.sortLength()[0]
+
+#find match of small pic in big pic
+t = 5
+#methods = ["SQR_DIFF","SQR_DIFF_NORM","CCOEFF","CCOEFF_NORM","CCORR","CCORR_NORM"] # the various types of template matching
+m = "CCOEFF"
+result = source
+dl = DrawingLayer((source.width,source.height))
+fs = source.findTemplate(template,threshold=t,method=m)
+for match in fs:
+    if match.y<38: continue #upper end of the pics is legit logos, matches not relevant
+    dl.rectangle((match.x,match.y),(match.width(),match.height()),color=Color.RED)
+
