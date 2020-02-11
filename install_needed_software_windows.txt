@@ -1,14 +1,14 @@
 #This files explains how to install the Windows software that will enable you to work with the ESP8266 'robot brain'
 
+The following software is needed for communicating with the robot over serial port
+     (for example, when loading the intial firmware to the robot)
+-----------------------------------------------------------------------------------
 - Install python 3.x (x86-64, 64-bit) from python.org. 
      
       During the installation, enable the check-box "Add Python 3.7 to Path"
   
-- Install the 'pillow' and ampy Python modules:
-     Open the command prompt (cmd) and issue the command:
-     `pip install pillow adafruit-ampy`
 
-- Install the drivers needed to burn the robot-brain:
+- Install the python modules needed to burn the robot-brain:
    `pip install adafruit-ampy`
    `pip install esptool pyserial`
 
@@ -19,6 +19,11 @@
 
 - Download and install the software 'putty'.
  
+The following software is needed only to create new pictures:
+-------------------------------------------------------------
+- Install the 'pillow' Python modules:
+     Open the command prompt (cmd) and issue the command:
+     `pip install pillow`
 - Optional: Install notepad++ (to edit code files) 
 - Optional: Install paint.net (to edit the .bmp image files)
 

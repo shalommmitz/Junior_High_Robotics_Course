@@ -1,48 +1,49 @@
 Shalom Mitz			25TH March 2017
 
-OVERVIEW
+# OVERVIEW
 
-The procedure below shows how to program the robot 'brain'. The brain is the 'WEMOS D1 Mini' part.
-Normally, the D1 can be programmed while the display-module is attached.
+The procedure below shows how to program the robot 'brain'.
 
-## Prerequisits:
-
-Make sure all needed software is installed on your PC, as detailed at the files "install_needed_software_linux.txt" and "install_needed_software_windows.txt"
-      During the installation, enable the check-box "Add Python 3.7 to Path"
-
-
+The brain is the 'WEMOS D1 Mini' part, which is based on the ESP8266 processor.
+The brain can be programmed with or without the display-module connected.
 
 ## Steps:
 
-1) Connect the D1 to a PC, using a normal 'Android' USB cable
+0) Make sure all needed software is installed on your PC, as detailed at the files "install_needed_software_linux.txt" and "install_needed_software_windows.txt"
+
+1) Connect the robot-brain to a PC, using a normal 'Android' USB cable
 
 2) Find the serial port used by the robot-brain:
    ON LINUX:
-   Using terminal, run 'ls /dev/ttyUSB'. This should show /dev/ttyUSB0
+   Using terminal, run 'ls /dev/ttyUSB*'. This should show /dev/ttyUSB0
    If only /dev/ttyUSB2 exists, you should change 'burn' to reflect this
    If the 'ls' command above does not show anything, the D1 was not recognized.
    This must be resolved before continuing.
 
    ON WINDOWS:
-      Open the "Device Manager":
-         - Right-click on "Computer"
-         - choose "Manage"
+      Normally, "COM4" is used on Windows
+      To see the actual port:
+         - Open the "Device Manager":
+             - Right-click on "Computer" or "This PC" icon
+             - At the menu that will open, choose "Manage"
+             - choose "Device Manager"
          - Expand "LPT and COM ports"
          - Notice the existing serial ports (called "COM" and a digit)
-         - Plug-in the robot brain to the PC, using USB cable
-         - Notice the name the new COM port. This is normally "COM4"
+         - Plug-in the robot brain to the PC, using a USB cable
+         - Notice the name of the new COM port. This is normally "COM4"
 
-OPTIONAL: you can bring the latest firmware build from
-     http://micropython.org/download#esp8266
-     If you bring such a file, you need to modify the 2nd line of 'burn'
+Note: 
+   Normally we program the brain with the firmware-image file present in this directory.
+   However, you can also use the generic microPython image, present at http://micropython.org/download#esp8266
 
-3) Program the D1 w/microPython: 
+3) Program the brain with the microPython image: 
    ON LINUX: Simply run './burn'
        Note: 'burn' depends on the 'serial' Python module.
    ON WINDOWS:
-       - Open comnmand prompt (Run: cmd)
+       - Open command prompt (Run: cmd)
        - `esptool.py erase_flash`
-       - `esptool.py --baud 460800 write_flash --flash_size=detect 0 firmware.bin`
+       - Change to directory containing the file firmware.bin
+       - `esptool.py write_flash 0 firmware.bin`
 
 4) Sanity check: disconnect the D1 from the USB and plug back.
    When you re-connect the D1, one of the LEDs should blink twice.
@@ -50,20 +51,44 @@ OPTIONAL: you can bring the latest firmware build from
    Note: Detailed instructions of programming the D1 and troubleshooting can be found at:
    http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#deploying-the-firmware
 
+
 5) Burn the additional files:
-   Run './send_all_files'
+   Run:
+     - On Windows: 'send_all_files_windows'
+     - On Linux:   './send_all_files_linux'
+
 
 
 Testing:
 
-1) Connect to the D1: 
-   The D1 looks like serial port at /dev/ttyUSB0 (rarly: /dev/ttyUSB1)
-   You can connect to it using: putty, minicom, screen, or any other 'terminal emulation' sofware
+   - Once you get the ">>>" prompt:
+     enter the command "import 
+
+
+1) Connect to the brain: 
+   Once connected, the brain looks like serial port at /dev/ttyUSB0 (rarely: /dev/ttyUSB1) on Linux or CAM4 on Windows.
+
+   You can connect to it using: putty, minicom, screen, or any other 'terminal emulation' software
+   Here are detailed instructions using Putty:
+
+   - Open putty
+   - Define a serial session: 
+      - Choose "Serial" as the connection type     
+      - Set the port (Normally: COM4 or /dev/ttyUSB0)
+      - Set the speed: 115200
+   - Open the connection: Click on "Open"
+   - Press "Enter": you should see the Python prompt (>>>)
+     Do not continue to the next steps before you get the prompt !
+     You can try to close Putty, disconnect the brain, reconnect the brain and launch putty again.
+     You can also try to burn the image again.
+
 
    Once you are connected, hit "Enter" few times, and you should get the ">>>" REPL prompt.
-   If you do not get the prompt, try unplugin/pluging from USB. If this fails, try 'burn' again.
+   If you do not get the prompt, try unplugin/plugin from USB. If this fails, try 'burn' again.
    There is no point to continue w/o the REPL prompt.
 
+   Also, once you are connected, you can type the command "import demo".
+   This should send few strings to the console and then display some pictures on the attached display. 
 
  
 Steps that are repeated each time the D1 is used:
@@ -72,7 +97,7 @@ Steps that are repeated each time the D1 is used:
    Connect to this network.
    Note: This will probably disconnect you from the Internet. 
 
-2) Connect to the D1 using WebREPL:
+2) Connect to the robot using WebREPL:
    If needed, download the webrepl files from  https://github.com/micropython/webrepl.
    Open the file "open webrepl.html in a browser. 
    You should get a prompt to choose password (first time) or login.
@@ -80,7 +105,7 @@ Steps that are repeated each time the D1 is used:
    There are more details at: https://github.com/micropython/webrepl
 
 
-3    Using WebREPL, import the 'robot' module. This will define 4 outputs:
+3)    Using WebREPL, import the 'robot' module. This will define 4 outputs:
     pwmRight, dirRight, pwmLeft, dirLeft
     Each of those can be set to high or low, for example:
     pwmRight.low() or pwmLeft.high() 

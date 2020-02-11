@@ -1,0 +1,3 @@
+unix2dos install_needed_software_windows.txt
+unix2dos robot_firmware/send_all_files_windows
+unix2dos robot_firmware/how_to_load_initial_software_to_the_robot_brain.txt
