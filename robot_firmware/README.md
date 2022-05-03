@@ -1,4 +1,4 @@
-Shalom Mitz			25TH March 2017
+Shalom Mitz			3rd March 2022
 
 # OVERVIEW
 
@@ -7,20 +7,48 @@ The procedure below shows how to program the robot 'brain'.
 The brain is the 'WEMOS D1 Mini' part, which is based on the ESP8266 processor.
 The brain can be programmed with or without the display-module connected.
 
-## Steps:
+# Steps:
 
-0) Make sure all needed software is installed on your PC, as detailed at the files "install_needed_software_linux.txt" and "install_needed_software_windows.txt"
+1. Install software:
 
-1) Connect the robot-brain to a PC, using a normal 'Android' USB cable
+   1.1. On Windows: Install Python:
+       
+        - Download and install the latest version from https://python.org 
+        - IMPORTANT: Turn on "Add Python to Path" at first screen of installation
 
-2) Find the serial port used by the robot-brain:
+   1.2. Install the sw to burn the 'robot brain' (=ESP8620):   `pip install esptool`
+   1.3. Install the sw  that will transfer files to the robot brain: 'pip install adafruit-ampy`
+   
+2. Connect the robot-brain to a PC, using a normal 'Android' micro-USB cable
+
+Note: 
+   Normally we program the brain with the firmware-image file present in this directory.
+   However, you can also use the generic microPython image, present at http://micropython.org/download#esp8266
+
+3) Program the brain with the microPython image: 
+   - ON LINUX: 
+
+       Run './initial_firmware_loading_for_linux'
+
+   - ON WINDOWS:
+
+       Run 'initial_firmware_loading_for_windows'
+
+3. Find the serial port used by the robot-brain:
+  
+   The easiest way is to look at the messages when running esptool (previous step).
+   
+   If this does not work:
+  
    ON LINUX:
+   
    Using terminal, run 'ls /dev/ttyUSB*'. This should show /dev/ttyUSB0
-   If only /dev/ttyUSB2 exists, you should change 'burn' to reflect this
+   If only /dev/ttyUSB2 exists, you should edit the file 'initial_firmware_loading_for_linux' to reflect this.
    If the 'ls' command above does not show anything, the D1 was not recognized.
    This must be resolved before continuing.
 
    ON WINDOWS:
+   
       Normally, "COM4" is used on Windows
       To see the actual port:
          - Open the "Device Manager":
@@ -32,40 +60,21 @@ The brain can be programmed with or without the display-module connected.
          - Plug-in the robot brain to the PC, using a USB cable
          - Notice the name of the new COM port. This is normally "COM4"
 
-Note: 
-   Normally we program the brain with the firmware-image file present in this directory.
-   However, you can also use the generic microPython image, present at http://micropython.org/download#esp8266
-
-3) Program the brain with the microPython image: 
-   ON LINUX: Simply run './burn'
-       Note: 'burn' depends on the 'serial' Python module.
-   ON WINDOWS:
-       - Open command prompt (Run: cmd)
-       - `esptool.py erase_flash`
-       - Change to directory containing the file firmware.bin
-       - `esptool.py write_flash 0 firmware.bin`
-
-4) Sanity check: disconnect the D1 from the USB and plug back.
+4. Sanity check: disconnect the D1 from the USB and plug back.
    When you re-connect the D1, one of the LEDs should blink twice.
    If the LED does not blink, or blink all the time, try to run 'burn' again
    Note: Detailed instructions of programming the D1 and troubleshooting can be found at:
    http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#deploying-the-firmware
 
 
-5) Burn the additional files:
+5. Burn the additional files:
    Run:
      - On Windows: 'send_all_files_windows'
      - On Linux:   './send_all_files_linux'
 
+# Testing:
 
-
-Testing:
-
-   - Once you get the ">>>" prompt:
-     enter the command "import 
-
-
-1) Connect to the brain: 
+1. Connect to the brain: 
    Once connected, the brain looks like serial port at /dev/ttyUSB0 (rarely: /dev/ttyUSB1) on Linux or CAM4 on Windows.
 
    You can connect to it using: putty, minicom, screen, or any other 'terminal emulation' software
@@ -84,7 +93,7 @@ Testing:
 
 
    Once you are connected, hit "Enter" few times, and you should get the ">>>" REPL prompt.
-   If you do not get the prompt, try unplugin/plugin from USB. If this fails, try 'burn' again.
+   If you do not get the prompt, try unplug/plugin from USB. If this fails, try 'burn' again.
    There is no point to continue w/o the REPL prompt.
 
    Also, once you are connected, you can type the command "import demo".
@@ -92,12 +101,15 @@ Testing:
 
  
 Steps that are repeated each time the D1 is used:
-1) Connect to the PC/laptop to the WiFi access-point created by the D1:
+
+1. Connect to the PC/laptop to the WiFi access-point created by the D1:
+
    Look at the available WiFi networks for a network called "MicroPython-xxxxxx" (the 'xxxxxx' part is different for each D1)
    Connect to this network.
    Note: This will probably disconnect you from the Internet. 
 
-2) Connect to the robot using WebREPL:
+2. Connect to the robot using WebREPL:
+
    If needed, download the webrepl files from  https://github.com/micropython/webrepl.
    Open the file "open webrepl.html in a browser. 
    You should get a prompt to choose password (first time) or login.
@@ -105,7 +117,11 @@ Steps that are repeated each time the D1 is used:
    There are more details at: https://github.com/micropython/webrepl
 
 
-3)    Using WebREPL, import the 'robot' module. This will define 4 outputs:
+3.  Using WebREPL, import the 'robot' module:
+    
+    Once you get the ">>>" prompt,  enter the command `import robot`
+    This will define 4 outputs:
     pwmRight, dirRight, pwmLeft, dirLeft
     Each of those can be set to high or low, for example:
     pwmRight.low() or pwmLeft.high() 
+    Experiment: those 4 pins control the motors.

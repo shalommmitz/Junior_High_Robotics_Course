@@ -1,4 +1,4 @@
-#This files explains how to install the Linux software that will enable you to work with the ESP8266 'robot brain'
+#This files explains how to install the Linux software needed to work with the ESP8266 'robot brain'
 
 On Ubuntu:
 

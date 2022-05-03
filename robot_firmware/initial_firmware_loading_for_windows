@@ -1,0 +1,6 @@
+REM Need python: you can Download and install from python.org. 
+REM IMPORTANT: Turn on "Add Python to Path" at first screen of installation
+REM Install the sw to burn the 'robot brain' (=ESP8620):   pip install esptool
+
+esptool erase_flash
+esptool write_flash --flash_size=detect 0 firmware.bin
