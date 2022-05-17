@@ -1,4 +1,4 @@
-Shalom Mitz			3rd March 2022
+Shalom Mitz			17th May 2022
 
 # OVERVIEW
 
@@ -11,10 +11,12 @@ The brain can be programmed with or without the display-module connected.
 
 1. Install software:
 
-   1.1. On Windows: Install Python:
+   1.1. On Windows: 
        
-        - Download and install the latest version from https://python.org 
-        - IMPORTANT: Turn on "Add Python to Path" at first screen of installation
+        - Install Python: Download and install the latest version from https://python.org 
+        
+           IMPORTANT: Turn on "Add Python to Path" at first screen of installation
+        - Install the drivers for the WeMOS serial drivers
 
    1.2. Install the sw to burn the 'robot brain' (=ESP8620):   `pip install esptool`
    1.3. Install the sw  that will transfer files to the robot brain: 'pip install adafruit-ampy`

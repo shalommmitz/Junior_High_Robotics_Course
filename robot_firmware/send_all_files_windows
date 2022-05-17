@@ -1,9 +1,0 @@
-import glob, os
-
-fileNames  = glob.glob("initial_files\*.py")
-fileNames += glob.glob("initial_files\*.hexImage")
-
-for fn in fileNames:
-    print "Burning "+ fn
-    #print os.popen("ampy.py -p COM4 put "+ fn).read()
-    print os.popen("ampy.py put "+ fn).read()
