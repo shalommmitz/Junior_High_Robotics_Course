@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import glob, os
 
 fileNames  = glob.glob("initial_files/*.py")
 fileNames += glob.glob("initial_files/*.hexImage")
 
 for fn in fileNames:
-    print "Burning "+ fn
-    print os.popen("ampy -p /dev/ttyUSB0 put "+ fn).read()
+    print("Burning "+ fn)
+    cmd = "ampy -p /dev/ttyUSB0 put "+ fn
+    print(os.popen(cmd).read())

@@ -27,7 +27,7 @@ Note:
    Normally we program the brain with the firmware-image file present in this directory.
    However, you can also use the generic microPython image, present at http://micropython.org/download#esp8266
 
-3) Program the brain with the microPython image: 
+3. Program the brain with the microPython image: 
    - ON LINUX: 
 
        Run './initial_firmware_loading_for_linux'
@@ -36,7 +36,7 @@ Note:
 
        Run 'initial_firmware_loading_for_windows'
 
-3. Find the serial port used by the robot-brain:
+4. Find the serial port used by the robot-brain:
   
    The easiest way is to look at the messages when running esptool (previous step).
    
@@ -62,17 +62,21 @@ Note:
          - Plug-in the robot brain to the PC, using a USB cable
          - Notice the name of the new COM port. This is normally "COM4"
 
-4. Sanity check: disconnect the D1 from the USB and plug back.
+5. Burn the additional files:
+   Run:
+
+     - On Windows: `send_all_files_windows.cmd`
+     - On Linux:   `./send_all_files_linux`
+
+   You can run the command "import verifyFiles" to verify that the files were correctly loaded.
+
+
+6. Sanity check: disconnect the D1 from the USB and plug back.
    When you re-connect the D1, one of the LEDs should blink twice.
    If the LED does not blink, or blink all the time, try to run 'burn' again
    Note: Detailed instructions of programming the D1 and troubleshooting can be found at:
    http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#deploying-the-firmware
 
-
-5. Burn the additional files:
-   Run:
-     - On Windows: 'send_all_files_windows'
-     - On Linux:   './send_all_files_linux'
 
 # Testing:
 

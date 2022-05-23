@@ -83,8 +83,9 @@ if packet:
             if str(msgDict["remoteId"]) == str(ROBOT_ID):
                 executePacket(msgDict)
             else:
-                print("Ignoring rf packet: wrong robot ID. Expected:"+ str(ROBOT_ID) +" Got from rf:"+ str(msgDict["remoteId"]) )_ 
+                print("Ignoring rf packet: wrong robot ID. Expected:"+ str(ROBOT_ID) +" Got from rf:"+ str(msgDict["remoteId"]) )
         packet = r.getPacket()
 
 # Step 3.5: No valid packet received - will exit
 print("Done")
+
