@@ -119,7 +119,7 @@ class RF(object):
         elif commandValue==1:       
             command = "OCR_MOVE_SET_LED"
         else:
-            msgDict = { "Error": "Unknown command" }
+            msgDict = { "Error": "Unknown command ("+ hex(commandValue) +")" }
             return msgDict
     
         commandParity = bool(msg[1] & 0b01000000)

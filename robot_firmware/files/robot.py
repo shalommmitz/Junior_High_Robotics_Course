@@ -80,10 +80,13 @@ if packet:
         if packet: 
             print( "Got RF packet:"+ str(ubinascii.hexlify(packet)) )
             msgDict = r.interpetMsg( packet)
-            if str(msgDict["remoteId"]) == str(ROBOT_ID):
-                executePacket(msgDict)
-            else:
+            print( "packet fields:"+ str(msgDict) )
+            if "Error" in msgDict.keys():
+                print("Ignoring rf packet because it is not well formed")
+            elif str(msgDict["remoteId"]) != str(ROBOT_ID):
                 print("Ignoring rf packet: wrong robot ID. Expected:"+ str(ROBOT_ID) +" Got from rf:"+ str(msgDict["remoteId"]) )
+            else:
+                executePacket(msgDict)
         packet = r.getPacket()
 
 # Step 3.5: No valid packet received - will exit
