@@ -1,7 +1,7 @@
 import glob, os
 
-fileNames  = glob.glob("initial_files\*.py")
-fileNames += glob.glob("initial_files\*.hexImage")
+fileNames  = glob.glob("files\*.py")
+fileNames += glob.glob("files\*.hexImage")
 
 for fn in fileNames:
     print("Burning "+ fn)
