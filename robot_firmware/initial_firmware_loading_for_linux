@@ -1,2 +1,2 @@
-esptool.py erase_flash
-esptool.py write_flash --flash_size=detect 0 firmware.bin
+esptool erase_flash
+esptool write_flash --flash_size=detect 0 firmware.bin
