@@ -5,6 +5,8 @@
     An open-source and open-hardware course, designed to make Technology cool.
   </p>
 </p>
+![Alt text](robot_and_remote.png?raw=true "The robot and remote-control assemled")
+
 <br>
 This repository holds the materials of a robotics course that was given for more than 10 years to gifted students. The course teaches the basics of electronics, programming and robotics. The course aims to make students 'at home' with advanced, deep technologies, in hope that more of them will choose STEM as careers.
 During the course, the students build a robot, which is affordable enough so they can take it home at the end of the year. This is a great motivator.
