@@ -36,18 +36,12 @@ This course teaches the following
 ## Content of Subdirectories
 
 - documents_presentations:
-
-    - syllabus.md
-      The plan for the course
-    - 2_08_Ofek_robotics_purchases.xlsx
-      The list of parts used in the course, including links for each item in Ali-Express
-    - advocating_technology_at_junior_high_Hebrew.pptx
-      The motivation for the course
-    - electronics_overview_Hebrew.ppt
-      The opening lecture of the course
-    - ohm_law_experiment.doc
-      A fun way to illustrate voltage/current/resistance and their relationship
-    - robot_overview_Hebrew.ppt
+    - [The course syllabus](documents_presentations/syllabus.md)
+    - [The list of parts used in the course, including links for each item in Ali-Express](documents_presentations/22_08_Ofek_robotics_purchases.xlsx)
+    - [Presentation: Motivation for the course (Hebrew)](documents_presentations/advocating_technology_at_junior_high_Hebrew.pptx)
+    - [Presentation: Overview of Electronics (Hebrew)](documents_presentations/electronics_overview_Hebrew.ppt)
+    - [Hands-on fun way to illustrate voltage/current/resistance and their relationship (Hebrew)](documents_presentations/ohm_law_experiment.doc)
+    -[Presentation: Overview of the robot (Hebrew)](documents_presentations/robot_overview_Hebrew.ppt) 
 
 - remoteControl_firmware
 - remoteControl_hardware
@@ -55,9 +49,15 @@ This course teaches the following
 - robot_hardware
 - robot_PC_software
 
-## Prerequisites and Installing
+## So, you want to teach this course ?
 
-...
+Here is what you will need:
+
+- One time: One item of: PIC programmer, [PIC basic pro compiler](http://store.melabs.com/prod/PBP/PBP3-2.html)
+- One time: For each student: A PC or laptop,working bench, a soldering iron
+- One time: For every 5 students: a multimeter, a magnifing glass, pliers, cutter 
+- Every year: [kits, robots and remote parts](documents_presentations/22_08_Ofek_robotics_purchases.xlsx)
+
 
 ## Author
 
