@@ -10,7 +10,7 @@
 This repository holds the materials of a robotics course that was given for more than 10 years to gifted students. The course teaches the basics of electronics, programming and robotics. The course aims to make students 'at home' with advanced, deep technologies, in hope that more of them will choose STEM as careers.
 During the course, the students build a robot, which is affordable enough so they can take it home at the end of the year. This is a great motivator.
 
-![Alt text](robot_and_remote.png?raw=true "The robot and remote-control assemled")
+![Alt text](robot_and_remote.png?raw=true "The robot and remote-control assembled")
 
 ## Table of contents
 
@@ -35,7 +35,20 @@ This course teaches the following
 
 ## Content of Subdirectories
 
-- documents_presentations
+- documents_presentations:
+
+    - syllabus.md
+      The plan for the course
+    - 2_08_Ofek_robotics_purchases.xlsx
+      The list of parts used in the course, including links for each item in Ali-Express
+    - advocating_technology_at_junior_high_Hebrew.pptx
+      The motivation for the course
+    - electronics_overview_Hebrew.ppt
+      The opening lecture of the course
+    - ohm_law_experiment.doc
+      A fun way to illustrate voltage/current/resistance and their relationship
+    - robot_overview_Hebrew.ppt
+
 - remoteControl_firmware
 - remoteControl_hardware
 - robot_firmware
