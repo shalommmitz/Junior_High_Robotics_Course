@@ -1,5 +1,6 @@
 from machine import Pin as pin, PWM
 import utime, rf, os, ubinascii
+import display
 
 OFF = 0; ON = 1 
 LED_OFF = 1; LED_ON = 0 
@@ -30,8 +31,14 @@ def executePacket(msgDict):
         dirLeft.value(BACK)
     pwmRight.value(ON);  pwmLeft.value(ON)
     print("Motors will be on for", msgDict["rightMotorDuration"]/100)
-    utime.sleep(msgDict["rightMotorDuration"]/100)
+    #utime.sleep(msgDict["rightMotorDuration"]/100)
+    utime.sleep(0.34)
     pwmRight.value(OFF); pwmLeft.value(OFF)
+
+# Step 0: Init display and say hello :)
+d = display.Display()
+d.clear()
+d.text(0,0,"Hi :-)")
 
 
 # Step 1: get and blink robot ID
@@ -44,6 +51,7 @@ if 'robot_id' in os.listdir():
     f.close()
 
 print("Robot id is", ROBOT_ID)
+d.text(0,12, "ID is "+str(ROBOT_ID))
 utime.sleep(1)
 for i in range(ROBOT_ID):
     LED.value(LED_ON); utime.sleep(1)
@@ -51,16 +59,22 @@ for i in range(ROBOT_ID):
 
 # Step 2: Test motors
 print("Step 2: Test motors")
+d.text(0,36, "Forward")
 dirRight.value(FORWARD); dirLeft.value(FORWARD)
 pwmRight.value(ON);  pwmLeft.value(ON);  utime.sleep(3)
 pwmRight.value(OFF); pwmLeft.value(OFF); utime.sleep(1)
+d.text(0,36, "Back   ")
 dirRight.value(BACK); dirLeft.value(BACK)
 pwmRight.value(ON);  pwmLeft.value(ON);  utime.sleep(3)
 pwmRight.value(OFF); pwmLeft.value(OFF); utime.sleep(1)
 LED.value(LED_OFF)
+d.clear()
+d.text(0,12, "ID is "+str(ROBOT_ID))
 
 # Step 3: Enter rf-recption mode, if received valid command before time-out
 print("Step 3: Enter rf-recption mode")
+d.text(0,36, "Wait for")
+d.text(0,48, "   RF")
 # Step 3.1: make led blink: 
 #           50% duty cycle, 4 Hz. Led is 0.125 sec on and 0.125 sec off
 pwm = PWM(LED, freq=4, duty=512) 
@@ -78,6 +92,9 @@ while (utime.time()<end_time) and not packet:
 LED.value(LED_OFF)
 # Step 3.4: Valid packet received - wait for more packets until reset 
 if packet:
+    d.clear()
+    d.text(0,12, "ID is "+str(ROBOT_ID))
+    d.text(0,36, "RF mode  ")
     while True:
         if packet: 
             print( "Got RF packet:"+ str(ubinascii.hexlify(packet)) )
@@ -92,5 +109,8 @@ if packet:
         packet = r.getPacket()
 
 # Step 3.5: No valid packet received - will exit
+d.clear()
+d.text(0,12, "ID is "+str(ROBOT_ID))
+d.text(0,36, "Repl mode")
 print("Done")
 
