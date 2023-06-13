@@ -10,7 +10,7 @@ fn = argv[1]
 if not os.path.isfile(fn):
     print("The file '"+ fn +"' does not exit - Aborting.")
     exit()
-if len(fn)<11:
+if len(fn)<10:
     print("The filename should end with '.hexImage' - Aborting.")
     exit()
 if fn[-9:].lower()!=".heximage":
