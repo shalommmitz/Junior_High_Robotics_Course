@@ -72,6 +72,8 @@ end_time =  utime.time() + 10
 packet = None
 while (utime.time()<end_time) and not packet:
     packet = r.getPacket()
+    print("Got packet of len", len(packet))
+    if len(packet)==0: packet = False
 # Step 3.3: Switch off the LED and deinitialize/stop the timer
 LED.value(LED_OFF)
 # Step 3.4: Valid packet received - wait for more packets until reset 
