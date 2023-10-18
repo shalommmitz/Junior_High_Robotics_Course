@@ -1,4 +1,4 @@
-Building the remote control
+The scematics of the remote control
 ===========================
 
 Intrduciotion
@@ -7,11 +7,11 @@ Intrduciotion
 The remote control is an optional part of the robots, that allows controlling the robot (move and turn) using the remote's buttons.
 The remote transmits the commands on the free-use 433MHz radio frequency.
 
-During the course, each student normally design her own PCB (Printed Circute Board) for the remote. 
+During the course, each student normally designs her own PCB (Printed Circute Board) for the remote. 
 However, a pre-existing PCB design is present in this directory, if needed.
 The software used for the schema capture and for the PCB design is the free version of diptrace. Sorrowfully, diptrace is available only under Windows. However, it is known to run under Linux/Wine.
 
-The rest of the document intruduces the components used and how to assemble the remote. 
+The rest of the document intruduces the components used and the connections between them.
 
 Terminal
 --------
