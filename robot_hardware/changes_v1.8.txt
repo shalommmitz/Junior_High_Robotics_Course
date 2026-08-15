@@ -1,0 +1,4 @@
+1. New PCB-to-wire part: 4 legs, w/o screws
+2. Added sw-controlled LED
+3. Add a LED to indicate reception of RF signal.
+4. Moved from ESP8266 to ESP-32 S2
